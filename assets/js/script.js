@@ -1,3 +1,4 @@
+
 var newsArticles = document.querySelector("#newsArticles")
 
 var sadURL = 'https://api.wheretheiss.at/v1/satellites/25544'
@@ -43,16 +44,17 @@ function fetchSatellites() {
                                     })
                                     .then (function (newsData) {
                                         console.log(newsData)
-                                        //for loop i=0, i > newsData.value.length, i++ (or something)
-                                        console.log(newsData.value[0].name)
-                                        var title = newsData.value[0].name;
-                                        dispTitle = document.createElement('li')
-                                        dispTitle.textContent = title
-                                        var link = newsData.value[0].url
-                                        var dispLink = document.createElement('a')
-                                        dispLink.setAttribute('href', link)
-                                        dispLink.appendChild(dispTitle)
-                                        newsArticles.appendChild(dispLink)
+                                        for (var i=0; i < newsData.value.length; i++) {
+                                            console.log(newsData.value[i].name)
+                                            var title = newsData.value[i].name;
+                                            dispTitle = document.createElement('li')
+                                            dispTitle.textContent = title
+                                            var link = newsData.value[i].url
+                                            var dispLink = document.createElement('a')
+                                            dispLink.setAttribute('href', link)
+                                            dispLink.appendChild(dispTitle)
+                                            newsArticles.appendChild(dispLink)
+                                        } 
                                     })    
                             }
                             fetchOceanNews() 
@@ -74,16 +76,17 @@ function fetchSatellites() {
                                     })
                                     .then (function (newsData) {
                                         console.log(newsData)
-                                        //for loop i=0, i > newsData.value.length, i++ (or something)
-                                        console.log(newsData.value[0].name)
-                                        var title = newsData.value[0].name;
-                                        dispTitle = document.createElement('li')
-                                        dispTitle.textContent = title
-                                        var link = newsData.value[0].url
-                                        var dispLink = document.createElement('a')
-                                        dispLink.setAttribute('href', link)
-                                        dispLink.appendChild(dispTitle)
-                                        newsArticles.appendChild(dispLink)
+                                        for (var i=0; i < newsData.value.length; i++) {
+                                            console.log(newsData.value[i].name)
+                                            var title = newsData.value[i].name;
+                                            dispTitle = document.createElement('li')
+                                            dispTitle.textContent = title
+                                            var link = newsData.value[i].url
+                                            var dispLink = document.createElement('a')
+                                            dispLink.setAttribute('href', link)
+                                            dispLink.appendChild(dispTitle)
+                                            newsArticles.appendChild(dispLink)
+                                        } 
                                     })    
                             }
                             fetchNews()
