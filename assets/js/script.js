@@ -60,7 +60,7 @@ function fetchSatellites() {
                                         }
                                     })
                             }
-                            // fetchOceanNews() 
+                            fetchOceanNews() 
                         }
                         else {
                             function fetchNews() {
@@ -92,7 +92,7 @@ function fetchSatellites() {
                                         }
                                     })
                             }
-                            // fetchNews()
+                            fetchNews()
                         }
                     })
             }
