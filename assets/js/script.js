@@ -78,44 +78,75 @@ function fetchSatellites() {
                         var search = dataCoord.timezone_id
                         console.log(search)
                         //get news from iss coordinates api
-                        function fetchNews() {
-                            const options = {
-                                method: 'GET',
-                                headers: {
-                                    'X-BingApis-SDK': 'true',
-                                    'X-RapidAPI-Key': '50cc2d0454msh791cfc507cb9edcp1bb448jsn9d24f68a8d93',
-                                    'X-RapidAPI-Host': 'bing-news-search1.p.rapidapi.com'
-                                }
-                            };
-                            fetch('https://bing-news-search1.p.rapidapi.com/news/search?q=' + search + '&safeSearch=Off&textFormat=Raw&freshness=Day', options)
-                                .then(function (resNews) {
-                                    console.log(resNews)
-                                    return resNews.json();
-                                })
-                                .then(function (newsData) {
-                                    console.log(newsData)
-                                    //for loop i=0, i > newsData.value.length, i++ (or something)
-                                    console.log(newsData.value[0].name)
-                                    var title = newsData.value[0].name;
-                                    dispTitle = document.createElement('li')
-                                    dispTitle.textContent = title
-                                    var link = newsData.value[0].url
-                                    var dispLink = document.createElement('a')
-                                    dispLink.setAttribute('href', link)
-                                    dispLink.appendChild(dispTitle)
-                                    newsArticles.appendChild(dispLink)
-                                })
+                        if (search.includes("GMT")) {
+                            function fetchOceanNews() {
+                                const options = {
+                                    method: 'GET',
+                                    headers: {
+                                        'X-BingApis-SDK': 'true',
+                                        'X-RapidAPI-Key': '50cc2d0454msh791cfc507cb9edcp1bb448jsn9d24f68a8d93',
+                                        'X-RapidAPI-Host': 'bing-news-search1.p.rapidapi.com'
+                                    }
+                                };
+                                fetch('https://bing-news-search1.p.rapidapi.com/news/search?q=ocean&safeSearch=Off&textFormat=Raw&freshness=Day', options)
+                                    .then (function (resNews) {
+                                        console.log(resNews)
+                                        return resNews.json();
+                                    })
+                                    .then (function (newsData) {
+                                        console.log(newsData)
+                                        //for loop i=0, i > newsData.value.length, i++ (or something)
+                                        console.log(newsData.value[0].name)
+                                        var title = newsData.value[0].name;
+                                        dispTitle = document.createElement('li')
+                                        dispTitle.textContent = title
+                                        var link = newsData.value[0].url
+                                        var dispLink = document.createElement('a')
+                                        dispLink.setAttribute('href', link)
+                                        dispLink.appendChild(dispTitle)
+                                        newsArticles.appendChild(dispLink)
+                                    })    
+                            }
+                            fetchOceanNews() 
                         }
-                        // fetchNews()
-                    })
-                
+                        else {
+                            function fetchNews() {
+                                const options = {
+                                    method: 'GET',
+                                    headers: {
+                                        'X-BingApis-SDK': 'true',
+                                        'X-RapidAPI-Key': '50cc2d0454msh791cfc507cb9edcp1bb448jsn9d24f68a8d93',
+                                        'X-RapidAPI-Host': 'bing-news-search1.p.rapidapi.com'
+                                    }
+                                };
+                                fetch('https://bing-news-search1.p.rapidapi.com/news/search?q=' + search + '&safeSearch=Off&textFormat=Raw&freshness=Day', options)
+                                    .then (function (resNews) {
+                                        console.log(resNews)
+                                        return resNews.json();
+                                    })
+                                    .then (function (newsData) {
+                                        console.log(newsData)
+                                        //for loop i=0, i > newsData.value.length, i++ (or something)
+                                        console.log(newsData.value[0].name)
+                                        var title = newsData.value[0].name;
+                                        dispTitle = document.createElement('li')
+                                        dispTitle.textContent = title
+                                        var link = newsData.value[0].url
+                                        var dispLink = document.createElement('a')
+                                        dispLink.setAttribute('href', link)
+                                        dispLink.appendChild(dispTitle)
+                                        newsArticles.appendChild(dispLink)
+                                    })    
+                            }
+                            fetchNews()
+                        }
+                    })    
             }
             fetchCoordinates();
         })
-        .catch(function (err) {
-            console.error(err);
-        });
+    .catch(function(err){
+        console.error(err);
+    });
 }
 
 fetchSatellites();
-
